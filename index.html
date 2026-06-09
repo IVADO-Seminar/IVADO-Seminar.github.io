@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seminar • Mathematics & Machine Learning</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #f6f9fc;
+      --paper-deep: #e8f0f8;
+      --ink: #11232f;
+      --ink-soft: #45596b;
+      --ink-faint: #8a9faf;
+      --accent: #0072ba;
+      --accent-deep: #005a93;
+      --line: #d3e0ec;
+      --line-soft: #e6eef5;
+
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Hanken Grotesk", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--paper);
+      /* faint coordinate dot-grid — a quiet nod to graph paper */
+      background-image: radial-gradient(var(--line) 1px, transparent 1px);
+      background-size: 30px 30px;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+    }
+
+    /* ---------- IVADO brand logo, top-right ---------- */
+    .brand-logo {
+      position: absolute;
+      top: 26px;
+      right: 28px;
+      z-index: 5;
+      line-height: 0;
+    }
+
+    .brand-logo img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+
+    /* ---------- shared label / kicker ---------- */
+    .kicker {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* ============================================================= */
+    /*  HERO                                                          */
+    /* ============================================================= */
+    header {
+      padding: clamp(72px, 12vh, 140px) 0 0;
+    }
+
+    .hero-kicker {
+      display: block;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      max-width: 14ch;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .lede {
+      margin-top: 28px;
+      max-width: 54ch;
+      font-size: 1.12rem;
+      color: var(--ink-soft);
+    }
+
+    /* ---------- buttons ---------- */
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .6em;
+      font-family: var(--sans);
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .01em;
+      padding: .85em 1.5em;
+      border-radius: 2px;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: transform .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease;
+    }
+
+    .btn .arrow {
+      transition: transform .18s ease;
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--paper);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-deep);
+      border-color: var(--accent-deep);
+      box-shadow: 0 6px 22px -10px var(--accent-deep);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- practical details under the buttons ---------- */
+    .hero-meta {
+      margin-top: 36px;
+      max-width: 56ch;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 16px;
+    }
+
+    .hero-meta .kicker {
+      color: var(--accent);
+    }
+
+    .hero-meta .detail {
+      color: var(--ink-soft);
+    }
+
+    .hero-meta .detail strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ============================================================= */
+    /*  NEXT SESSION feature                                          */
+    /* ============================================================= */
+    .next {
+      margin: 40px 0 8px;
+      padding: 22px 26px;
+      background: var(--paper-deep);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 3px;
+    }
+
+    .next .kicker {
+      color: var(--accent);
+    }
+
+    .next-date {
+      font-family: var(--mono);
+      font-size: .88rem;
+      color: var(--ink-soft);
+      margin-top: 10px;
+    }
+
+    .next-title {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.35rem, 3vw, 1.7rem);
+      line-height: 1.15;
+      margin-top: 5px;
+    }
+
+    .next-meta {
+      margin-top: 6px;
+      color: var(--ink-soft);
+      font-size: .96rem;
+    }
+
+    .next-meta strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ============================================================= */
+    /*  PROGRAM                                                       */
+    /* ============================================================= */
+    section.program {
+      padding: 8px 0 8px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 64px 0 8px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .section-head h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.7rem;
+      letter-spacing: -0.01em;
+    }
+
+    .count {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--ink-faint);
+    }
+
+    /* first heading sits close to the next-session block */
+    .program .section-head:first-of-type {
+      margin-top: 22px;
+    }
+
+    ul.talks {
+      list-style: none;
+    }
+
+    .talk {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 8px 28px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .talk .when {
+      font-family: var(--mono);
+      font-size: .82rem;
+      color: var(--ink-soft);
+      padding-top: .35em;
+    }
+
+    .talk .index {
+      color: var(--ink-faint);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .talk h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.32rem;
+      line-height: 1.22;
+      letter-spacing: -0.005em;
+    }
+
+    .talk .speaker {
+      margin-top: 8px;
+      color: var(--ink-soft);
+      font-size: .98rem;
+    }
+
+    .talk .speaker strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* past talks recede and stay compact */
+    .talks.past .talk {
+      opacity: .62;
+      padding: 15px 0;
+    }
+
+    .talks.past .talk:hover {
+      opacity: 1;
+      transition: opacity .25s ease;
+    }
+
+    .talks.past .talk h3 {
+      font-weight: 400;
+      font-size: 1.18rem;
+    }
+
+    .talks.past .talk .speaker {
+      margin-top: 4px;
+      font-size: .92rem;
+    }
+
+    .empty {
+      padding: 26px 0;
+      color: var(--ink-faint);
+      font-style: italic;
+    }
+
+    /* ============================================================= */
+    /*  FOOTER                                                        */
+    /* ============================================================= */
+    footer {
+      margin-top: 80px;
+      padding: 48px 0 70px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .foot-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px 64px;
+      justify-content: space-between;
+    }
+
+    footer h4 {
+      font-family: var(--mono);
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    .foot-mark {
+      margin-top: 40px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-faint);
+    }
+
+    /* ============================================================= */
+    /*  Load animation (respecting reduced-motion)                    */
+    /* ============================================================= */
+    @media (prefers-reduced-motion:no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: rise .7s cubic-bezier(.2, .7, .2, 1) forwards;
+      }
+
+      @keyframes rise {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    }
+
+    @media (max-width:620px) {
+      .talk {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .talk .when {
+        padding-top: 0;
+      }
+
+      .next {
+        padding: 18px 18px;
+      }
+
+      .section-head {
+        margin-top: 48px;
+      }
+
+      .brand-logo {
+        top: 18px;
+        right: 18px;
+      }
+
+      .brand-logo img {
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <header>
+      <span class="kicker hero-kicker reveal" style="animation-delay:.05s">Seminar Series • Machine Learning &amp; Optimization</span>
+      <h1 class="reveal" style="animation-delay:.12s">IVADO's R9 Seminar</h1>
+      <p class="lede reveal" style="animation-delay:.20s">
+        IVADO's R9 Seminar occurs every first Wednesday of each month, gathering students and researchers from Montréal's ecosystem in machine learning and optimization. The goal is simple: talk about an exiting paper you wrote or read recently.
+        The seminar is open to everyone, but requires registration.
+      </p>
+      <div class="actions reveal" style="animation-delay:.28s">
+        <a class="btn btn-primary" id="registerBtn" href="#" target="_blank" rel="noopener">
+          Register for the next event <span class="arrow">→</span>
+        </a>
+        <a class="btn btn-ghost" id="newsletterBtn" href="#" target="_blank" rel="noopener">
+          Subscribe to the newsletter <span class="arrow">→</span>
+        </a>
+        <a class="btn btn-ghost" id="calendarBtn" href="#" target="_blank" rel="noopener">
+          Subscribe to the calendar <span class="arrow">→</span>
+        </a>
+      </div>
+    </header>
+
+    <div id="nextSession"></div>
+
+    <section class="program">
+      <div class="section-head">
+        <h2>Past sessions</h2>
+        <span class="count" id="pastCount"></span>
+      </div>
+      <ul class="talks past" id="pastList"></ul>
+    </section>
+
+    <footer>
+      <div class="foot-grid">
+        <div>
+          <h4>Organizers</h4>
+          <p><a href="mailto:ismael.elyassini@polymtl.ca">Ismaël El Yassini — Polytechnique Montréal</a></p>
+          <p><a href="mailto:theo.guyard@polymtl.ca">Théo Guyard — Polytechnique Montréal</a></p>
+          <p><a href="mailto:nagisa.sugishita@hec.ca">Nagisa Sugishita — HEC Montréal</a></p>
+        </div>
+        <div>
+          <h4>Supported by</h4>
+          <p><a href="https://ivado.ca">IVADO's R9 Cluster</a></p>
+          <p><a href="https://www.cirrelt.ca">CIRRELT Laboratory</a></p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+
+    /* === Website data === */
+
+    const REGISTER_FORM_URL = "https://forms.gle/REPLACE_WITH_REGISTRATION_FORM";
+    const NEWSLETTER_FORM_URL = "https://forms.gle/REPLACE_WITH_NEWSLETTER_FORM";
+    const AGENDA_FORM_URL = "https://forms.gle/REPLACE_WITH_AGENDA_FORM";
+
+    const events = [
+      {
+        date: "2026-07-08", title: "To be announced soon",
+        speaker: "Feel free to contact us if you'd like to be the next speaker!", affiliation: ""
+      },
+
+      {
+        date: "2026-06-03", title: "Contextual optimization methods for decision making under uncertainty",
+        speaker: "Utsav Sadana", affiliation: "University of Montréal"
+      },
+
+      {
+        date: "2026-05-08", title: "Linear Decision Tree Policies for Integer Linear Programs",
+        speaker: "Théo Guyard", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2026-04-01", title: "Mixed-Integer Programming vs. Constraint Programming for Shop Scheduling Problems: New Results and Outlook",
+        speaker: "Camille Pinçon", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2026-03-04", title: "Beyond Shapley Values: Cooperative Games for the Interpretation of Machine Learning Models",
+        speaker: "Marouane Il Idrissi", affiliation: "UQAM"
+      },
+
+      {
+        date: "2026-02-04", title: "Bayesian Optimization of Function Networks",
+        speaker: "Seung Min Baik", affiliation: "HEC Montréal"
+      },
+
+      {
+        date: "2025-11-26", title: "Latent Guided Sampling for Combinatorial Optimization",
+        speaker: "Sobihan Surendran", affiliation: "Paris Sorbonne"
+      },
+
+      {
+        date: "2025-10-22", title: "Sequential conditional transport on probabilistic graphs for interpretable counterfactual fairness",
+        speaker: "Agathe Fernandes Machado", affiliation: "UQAM"
+      },
+
+      {
+        date: "2025-09-24", title: "Convergence towards a local minimum by direct search methods with a covering step",
+        speaker: "Pierre-Yves Bouchet", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2025-07-30", title: "Learning with Combinatorial Optimization Layers: a Probabilistic Approach",
+        speaker: "Antonio Coppola", affiliation: "Technische Universität München"
+      },
+
+      {
+        date: "2025-06-25", title: "Mixed-Integer Optimization with Constraint Learning",
+        speaker: "David Tremblet", affiliation: "HEC Montréal"
+      },
+
+      {
+        date: "2025-04-30", title: "Solving Two-Stage Stochastic Programs with Endogenous Uncertainty via Random Variable Transformation",
+        speaker: "Maria Bazotte", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2025-03-05", title: "A Unified Approach to Mixed-Integer Optimization Problems With Logical Constraints",
+        speaker: "Théo Guyard", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2025-02-26", title: "Global solution of bilevel programs with a nonconvex inner program",
+        speaker: "Bruno Machado Pacheco", affiliation: "University of Montréal"
+      },
+
+      {
+        date: "2025-01-29", title: "How bad is selfish routing?",
+        speaker: "Nagisa Sugishita", affiliation: "HEC Montréal"
+      },
+
+      {
+        date: "2024-10-23", title: "An Overview of Privacy in Machine Learning",
+        speaker: "Julien Ferry", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2024-09-25", title: "A Linear Programming Approach to the Cutting-Stock Problem",
+        speaker: "Marius Roland", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2024-08-28", title: "Trained Random Forests Completely Reveal your Dataset",
+        speaker: "Awa Khouna", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2024-07-31", title: "Reinforcement learning for combinatorial optimization: A survey",
+        speaker: "Jiaqi Liang", affiliation: "Polytechnique Montréal"
+      },
+
+      {
+        date: "2024-06-26", title: "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+        speaker: "Alexandre Forel", affiliation: "Polytechnique Montréal"
+      },
+
+    ];
+
+
+    /* === Rendering Logic ==== */
+
+    document.getElementById("registerBtn").href = REGISTER_FORM_URL;
+    document.getElementById("newsletterBtn").href = NEWSLETTER_FORM_URL;
+    document.getElementById("calendarBtn").href = AGENDA_FORM_URL;
+
+    const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+    const fmtLong = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const dateOf = e => new Date(e.date + "T00:00:00");
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+
+    const upcoming = events.filter(e => dateOf(e) >= today).sort((a, b) => dateOf(a) - dateOf(b));
+    const past = events.filter(e => dateOf(e) < today).sort((a, b) => dateOf(b) - dateOf(a));
+
+    function talkHTML(e, idx) {
+      return `
+    <li class="talk">
+      <div class="when">
+        <span class="index">${fmt.format(dateOf(e))}</span>
+      </div>
+      <div class="body">
+        <h3>${e.title}</h3>
+        <p class="speaker"><strong>${e.speaker}</strong> • ${e.affiliation}</p>
+      </div>
+    </li>`;
+    }
+
+    const pastList = document.getElementById("pastList");
+
+    pastList.innerHTML = past.length
+      ? past.map((e, i) => talkHTML(e, past.length - i)).join("")
+      : `<li class="empty">The archive is empty for now.</li>`;
+
+    document.getElementById("pastCount").textContent = past.length ? `${past.length} held` : "";
+
+    const nextEl = document.getElementById("nextSession");
+    if (upcoming.length) {
+      const n = upcoming[0];
+      nextEl.innerHTML = `
+    <div class="next reveal" style="animation-delay:.34s">
+      <span class="kicker">Next session</span>
+      <div class="next-date">${fmtLong.format(dateOf(n))} • 1:00 to 2:00 PM <br> Room 2091, 950 Av. Beaumont, IVADO's building in MIL Campus</div>
+      <div class="next-title">${n.title}</div>
+      <p class="next-meta"><strong>${n.speaker}</strong> — ${n.affiliation}</p>
+    </div>`;
+    }
+
+  </script>
+</body>
+
+</html>
