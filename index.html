@@ -171,6 +171,11 @@
       transform: translateY(-2px);
     }
 
+    /* a button that scrolls down rather than away nudges its arrow downward */
+    .btn-down:hover .arrow {
+      transform: translateY(3px);
+    }
+
     /* ---------- practical details under the buttons ---------- */
     .hero-meta {
       margin-top: 36px;
@@ -343,6 +348,68 @@
     }
 
     /* ============================================================= */
+    /*  GETTING HERE                                                  */
+    /* ============================================================= */
+    section.access {
+      scroll-margin-top: 24px;
+    }
+
+    .access-lede {
+      margin-top: 24px;
+      max-width: 64ch;
+      color: var(--ink-soft);
+    }
+
+    .access-lede strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .access-figure {
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    /* the map keeps a legible minimum width and scrolls on small screens */
+    .access-scroll {
+      overflow-x: auto;
+    }
+
+    .access-svg {
+      display: block;
+      width: 100%;
+      min-width: 640px;
+      height: auto;
+    }
+
+    .access-figure figcaption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px 20px;
+      padding: 12px 18px;
+      border-top: 1px solid var(--line-soft);
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .04em;
+      color: var(--ink-faint);
+    }
+
+    .access-figure figcaption a {
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .access-figure figcaption a:hover {
+      text-decoration: underline;
+    }
+
+    /* ============================================================= */
     /*  FOOTER                                                        */
     /* ============================================================= */
     footer {
@@ -449,6 +516,9 @@
         <a class="btn btn-primary" id="registerBtn" href="#" target="_blank" rel="noopener">
           Register for the next event <span class="arrow">→</span>
         </a>
+        <a class="btn btn-ghost btn-down" href="#access">
+          Coming to the seminar <span class="arrow">↓</span>
+        </a>
         <!-- <a class="btn btn-ghost" id="newsletterBtn" href="#" target="_blank" rel="noopener">
           Subscribe to the newsletter <span class="arrow">→</span>
         </a>
@@ -466,6 +536,108 @@
         <span class="count" id="pastCount"></span>
       </div>
       <ul class="talks past" id="pastList"></ul>
+    </section>
+
+    <section class="access" id="access">
+      <div class="section-head">
+        <h2>Coming to the seminar</h2>
+        <span class="count">950 Av. Beaumont</span>
+      </div>
+
+      <p class="access-lede">
+        Sessions are held in <strong>Room 2091</strong> of the IVADO building, 950 Av. Beaumont,
+        on the MIL campus. The simplest way in is the metro: take the <strong>blue line to
+        Acadie</strong>, leave through the Beaumont exit, and the building is a three-minute walk
+        north-east along the avenue. Buses <strong>16</strong>, <strong>92</strong> and
+        <strong>179</strong> stop at that same corner.
+      </p>
+
+      <figure class="access-figure">
+        <div class="access-scroll">
+          <svg class="access-svg" viewBox="0 0 1000 620" role="img" aria-labelledby="mapTitle mapDesc" xmlns="http://www.w3.org/2000/svg">
+          <title id="mapTitle">Getting to 950 Avenue Beaumont</title>
+          <desc id="mapDesc">The seminar is held at 950 Avenue Beaumont. By metro, take the blue line (line 5) to Acadie station, between Outremont and Parc, and use the Beaumont exit at 999 Avenue Beaumont: the building is directly across the street, about 250 metres north-east, a three minute walk. By bus, routes 16 Graham, 92 Jean-Talon Ouest and 179 De l'Acadie all stop at Beaumont and Boulevard de l'Acadie, at the station entrance; night routes 365 Du Parc and 372 Jean-Talon serve the same corner.</desc>
+          <defs>
+          <clipPath id="mapClip"><rect x="0" y="170" width="1000" height="330"/></clipPath>
+          <marker id="walkArrow" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="4.6" markerHeight="4.6" orient="auto-start-reverse"><path d="M0.5,1 L9,5 L0.5,9 z" fill="#45596b"/></marker>
+          </defs>
+          <rect width="1000" height="620" fill="#f6f9fc"/>
+          <text x="48.0" y="46.0" text-anchor="start" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#0072ba" font-weight="600" letter-spacing="3.2">BY METRO</text>
+          <rect x="48" y="58" width="132" height="26" rx="13" fill="#0072ba"/>
+          <text x="114.0" y="76.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#ffffff" font-weight="600" letter-spacing="1">LINE 5 · BLUE</text>
+          <line x1="212" y1="104" x2="918" y2="104" stroke="#0072ba" stroke-width="9" stroke-linecap="round"/>
+          <line x1="212" y1="104" x2="294" y2="104" stroke="#f6f9fc" stroke-width="9" stroke-linecap="round" opacity=".62"/>
+          <line x1="844" y1="104" x2="918" y2="104" stroke="#f6f9fc" stroke-width="9" stroke-linecap="round" opacity=".62"/>
+          <text x="214.0" y="82.0" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#8a9faf" font-weight="500">◀  toward Snowdon</text>
+          <text x="916.0" y="82.0" text-anchor="end" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#8a9faf" font-weight="500">toward Saint-Michel  ▶</text>
+          <circle cx="320" cy="104" r="8" fill="#f6f9fc" stroke="#0072ba" stroke-width="3.5"/>
+          <text x="320.0" y="138.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#45596b" font-weight="400">Édouard-Montpetit</text>
+          <circle cx="444" cy="104" r="8" fill="#f6f9fc" stroke="#0072ba" stroke-width="3.5"/>
+          <text x="444.0" y="138.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#45596b" font-weight="400">Outremont</text>
+          <circle cx="572" cy="104" r="15.5" fill="#f6f9fc" stroke="#0072ba" stroke-width="5"/>
+          <circle cx="572" cy="104" r="5.5" fill="#0072ba"/>
+          <text x="572.0" y="74.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0072ba" font-weight="600" letter-spacing="1.8">GET OFF HERE</text>
+          <text x="572.0" y="148.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="18" fill="#11232f" font-weight="600">Acadie</text>
+          <circle cx="702" cy="104" r="8" fill="#f6f9fc" stroke="#0072ba" stroke-width="3.5"/>
+          <text x="702.0" y="138.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#45596b" font-weight="400">Parc</text>
+          <circle cx="824" cy="104" r="8" fill="#f6f9fc" stroke="#0072ba" stroke-width="3.5"/>
+          <text x="824.0" y="138.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#45596b" font-weight="400">De Castelnau</text>
+          <g clip-path="url(#mapClip)">
+          <rect x="0" y="170" width="1000" height="330" fill="#e3ecf4"/>
+          <polygon points="189.7,373.7 1074.1,373.7 1074.1,568.1 26.2,568.1" fill="#dceadf"/>
+          <path d="M-96.8,714.4 L523.0,-22.6" fill="none" stroke="#cddcea" stroke-width="42.0" stroke-linecap="butt"/>
+          <path id="acadieSt" d="M-96.8,714.4 L523.0,-22.6" fill="none" stroke="#ffffff" stroke-width="37.0" stroke-linecap="butt"/>
+          <path d="M-74.1,345.9 L1074.1,345.9" fill="none" stroke="#cddcea" stroke-width="45.7" stroke-linecap="butt"/>
+          <path id="beaumontSt" d="M-74.1,345.9 L1074.1,345.9" fill="none" stroke="#ffffff" stroke-width="40.7" stroke-linecap="butt"/>
+          <rect x="448.1" y="212.6" width="177.8" height="88.9" rx="3" fill="#0072ba" opacity=".14"/>
+          <rect x="448.1" y="212.6" width="177.8" height="88.9" rx="3" fill="none" stroke="#0072ba" stroke-width="2.5"/>
+          <path d="M218.5,383.0 L488.9,383.0 L507.4,305.2" fill="none" stroke="#45596b" stroke-width="3.4" stroke-dasharray="1.5 8" stroke-linecap="round" marker-end="url(#walkArrow)"/>
+          </g>
+          <text x="750.0" y="351.9" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" fill="#8a9faf" font-weight="600" letter-spacing="2">AVENUE BEAUMONT</text>
+          <text x="327.5" y="209.9" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" fill="#8a9faf" font-weight="600" letter-spacing="1.4" transform="rotate(-49.9 327.5 209.9)">BOUL. DE L'ACADIE</text>
+          <text x="96.3" y="205.2" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#8a9faf" font-weight="400" opacity=".85">Parc-Extension</text>
+          <text x="577.8" y="464.4" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" fill="#5c7d64" font-weight="600">Campus MIL</text>
+          <text x="577.8" y="490.4" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#5c7d64" font-weight="400" opacity=".85">Université de Montréal</text>
+          <circle cx="181.5" cy="383.0" r="19" fill="#0072ba" stroke="#f6f9fc" stroke-width="3"/>
+          <path d="M173.0,389.5 L181.5,374.5 L190.0,389.5 L181.5,384.0 Z" fill="#ffffff"/>
+          <text x="181.5" y="430.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="15" fill="#11232f" font-weight="600" letter-spacing=".4">ACADIE STATION</text>
+          <text x="181.5" y="451.0" text-anchor="middle" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#45596b" font-weight="400">Beaumont exit · 999 Av. Beaumont</text>
+          <path d="M507.4,301.5 c-13.5,-17 -22,-26 -22,-37.5 a22,22 0 1 1 44,0 c0,11.5 -8.5,20.5 -22,37.5 z" fill="#11232f"/>
+          <circle cx="507.4" cy="262.5" r="7.8" fill="#f6f9fc"/>
+          <text x="648.1" y="226.6" text-anchor="start" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0072ba" font-weight="600" letter-spacing="2.2">THE SEMINAR</text>
+          <text x="648.1" y="252.6" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" fill="#11232f" font-weight="600">950 Av. Beaumont</text>
+          <text x="648.1" y="274.6" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#45596b" font-weight="400">IVADO building · Room 2091</text>
+          <rect x="282.7" y="365.0" width="168" height="34" rx="17" fill="#f6f9fc" stroke="#d3e0ec" stroke-width="1.5"/>
+          <text x="366.7" y="388.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#45596b" font-weight="600">200 m · 3 min walk</text>
+          <g transform="rotate(40.1 948 214)"><path d="M948,193 L956.5,223 L948,216 L939.5,223 Z" fill="#11232f"/></g>
+          <text x="948.0" y="244.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#11232f" font-weight="600">N</text>
+          <line x1="786" y1="474" x2="971.2" y2="474" stroke="#45596b" stroke-width="2.5"/>
+          <line x1="786.0" y1="469" x2="786.0" y2="479" stroke="#45596b" stroke-width="2.5"/>
+          <line x1="971.2" y1="469" x2="971.2" y2="479" stroke="#45596b" stroke-width="2.5"/>
+          <text x="878.6" y="463.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#45596b" font-weight="500">100 m</text>
+          <line x1="0" y1="170" x2="1000" y2="170" stroke="#d3e0ec"/>
+          <line x1="0" y1="500" x2="1000" y2="500" stroke="#d3e0ec"/>
+          <text x="48.0" y="532.0" text-anchor="start" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#a95a27" font-weight="600" letter-spacing="3.2">BY BUS</text>
+          <rect x="48.0" y="546.0" width="44" height="26" rx="4" fill="#f6e7da" stroke="#a95a27" stroke-width="1.5"/>
+          <text x="70.0" y="564.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#a95a27" font-weight="600">16</text>
+          <text x="103.0" y="564.0" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#11232f" font-weight="500">Graham</text>
+          <rect x="268.0" y="546.0" width="44" height="26" rx="4" fill="#f6e7da" stroke="#a95a27" stroke-width="1.5"/>
+          <text x="290.0" y="564.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#a95a27" font-weight="600">92</text>
+          <text x="323.0" y="564.0" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#11232f" font-weight="500">Jean-Talon Ouest</text>
+          <rect x="496.0" y="546.0" width="52" height="26" rx="4" fill="#f6e7da" stroke="#a95a27" stroke-width="1.5"/>
+          <text x="522.0" y="564.0" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#a95a27" font-weight="600">179</text>
+          <text x="559.0" y="564.0" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="14" fill="#11232f" font-weight="500">De l'Acadie</text>
+          <text x="952.0" y="540.0" text-anchor="end" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" fill="#45596b" font-weight="400">All three stop at Beaumont / de l'Acadie —</text>
+          <text x="952.0" y="562.0" text-anchor="end" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="13.5" fill="#45596b" font-weight="400">the station entrance is on that corner.</text>
+          <text x="48.0" y="598.0" text-anchor="start" font-family="Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif" font-size="12.5" fill="#8a9faf" font-weight="400">Night service · 365 Du Parc · 372 Jean-Talon</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span>Schematic map — Acadie station to 950 Av. Beaumont</span>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=950+Av.+Beaumont%2C+Montr%C3%A9al%2C+QC+H3N+1V5"
+            target="_blank" rel="noopener">Open in Maps →</a>
+        </figcaption>
+      </figure>
     </section>
 
     <footer>
