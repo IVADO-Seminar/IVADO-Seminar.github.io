@@ -510,22 +510,21 @@
       <h1 class="reveal" style="animation-delay:.12s">Monthly Seminar</h1>
       <p class="lede reveal" style="animation-delay:.20s">
         This monthly seminar occurs every first Wednesday of each month, gathering students and researchers from Montréal's ecosystem in machine learning and optimization. The goal is simple: talk about an exiting paper you wrote or read recently.
-        The seminar is open to everyone, but requires registration.
       </p>
-      <div class="actions reveal" style="animation-delay:.28s">
-        <a class="btn btn-primary" id="registerBtn" href="#" target="_blank" rel="noopener">
+      <!-- <div class="actions reveal" style="animation-delay:.28s"> -->
+        <!-- <a class="btn btn-primary" id="registerBtn" href="#" target="_blank" rel="noopener">
           Register for the next event <span class="arrow">→</span>
-        </a>
-        <a class="btn btn-ghost btn-down" href="#access">
+        </a> -->
+        <!-- <a class="btn btn-ghost btn-down" href="#access">
           Coming to the seminar <span class="arrow">↓</span>
-        </a>
+        </a> -->
         <!-- <a class="btn btn-ghost" id="newsletterBtn" href="#" target="_blank" rel="noopener">
           Subscribe to the newsletter <span class="arrow">→</span>
         </a>
         <a class="btn btn-ghost" id="calendarBtn" href="#" target="_blank" rel="noopener">
           Subscribe to the calendar <span class="arrow">→</span>
         </a> -->
-      </div>
+      <!-- </div> -->
     </header>
 
     <div id="nextSession"></div>
@@ -538,7 +537,7 @@
       <ul class="talks past" id="pastList"></ul>
     </section>
 
-    <section class="access" id="access">
+    <!-- <section class="access" id="access">
       <div class="section-head">
         <h2>Coming to the seminar</h2>
         <span class="count">950 Av. Beaumont</span>
@@ -638,7 +637,7 @@
             target="_blank" rel="noopener">Open in Maps →</a>
         </figcaption>
       </figure>
-    </section>
+    </section> -->
 
     <footer>
       <div class="foot-grid">
@@ -667,6 +666,11 @@
     const AGENDA_FORM_URL = "https://forms.gle/REPLACE_WITH_AGENDA_FORM";
 
     const events = [
+      {
+        date: "2026-10-14", title: "Interpreto: An Explainability Library for Transformers",
+        speaker: "Fanny Jourdan", affiliation: "Technological Research Institute Saint Exupéry"
+      },
+
       {
         date: "2026-09-15", title: "Information Relaxations and Duality in Stochastic Dynamic Programs",
         speaker: "Florentin D'Hildebrandt", affiliation: "Universität Magdeburg"
@@ -777,7 +781,7 @@
 
     /* === Rendering Logic ==== */
 
-    document.getElementById("registerBtn").href = REGISTER_FORM_URL;
+    // document.getElementById("registerBtn").href = REGISTER_FORM_URL;
     // document.getElementById("newsletterBtn").href = NEWSLETTER_FORM_URL;
     // document.getElementById("calendarBtn").href = AGENDA_FORM_URL;
 
@@ -816,7 +820,7 @@
       nextEl.innerHTML = `
     <div class="next reveal" style="animation-delay:.34s">
       <span class="kicker">Next session</span>
-      <div class="next-date">${fmtLong.format(dateOf(n))} • 1:00 to 2:00 PM <br> Room 2055, 950 Av. Beaumont, IVADO's building in MIL Campus</div>
+      <div class="next-date">${fmtLong.format(dateOf(n))} • 1:00 to 2:00 PM <br> Room 5441, Pavillon André Aisenstadt, Polytechnique Montréal</div>
       <div class="next-title">${n.title}</div>
       <p class="next-meta"><strong>${n.speaker}</strong> — ${n.affiliation}</p>
     </div>`;
